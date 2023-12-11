@@ -1,0 +1,118 @@
+<div style="padding: 15px; padding-bottom: 35px; background: linear-gradient(to bottom, #000, #191919);">
+    <div class="d-flex justify-content-between site-contain">
+        {% comment %} <img src="" alt="Square logo"> {% endcomment %}
+        <img class="img-fluid" style="width: 70px;"
+            src="https://cdn.shopify.com/s/files/1/0590/6907/1420/files/square-logo-transparent.png?v=1702225342"
+            alt="Logo">
+
+
+
+        <nav x-data="{open: false}" class="d-none d-md-flex gap-10">
+            <ul style="list-style: none; display: flex; margin: 0; align-items: center;">
+                {% for link in linklists.menu-square.links %}
+                {% if link.links != blank %}
+
+                <li class="position-relative mx-2">
+                    <div x-on:click="open = ! open" type="button"
+                        class="d-inline-flex align-items-center text-base text-gray-500 hover-text-gray-900">
+                        {{link.title}} {% render 'chevron-down' %}
+                    </div>
+
+                    <!-- X-SHOW IS BOOLEAN -->
+                    <ul x-show="open" @click.away="open = false"
+                        class="position-absolute start-50 translate-middle-x mt-5 px-2 max-w-md sm:px-0 lg-start-0 translate-middle-x">
+                        <li class="shadow-lg border ring ring-black ring-opacity-5 overflow-hidden rounded-lg">
+                            <div class="position-relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                                {% for item in link.links %}
+                                <!-- CREATE THE SUBLINK(s) -->
+                                <a href="{{item.url}}"
+                                    class="nav-link-lg -m-3 p-3 d-flex align-items-center rounded-lg hover-bg-gray-100">
+                                    <div class="ms-4">
+                                        <p class="text-gray-900 text-base font-weight-medium">
+                                            {{item.title}}
+                                        </p>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                {% else %}
+                <li class="position-relative mx-2">
+                    <a href="{{link.url}}"
+                        class="nav-link-lg text-base text-gray-500 hover-text-gray-900">{{link.title}}</a>
+                </li>
+
+                {% endif %}
+
+                {% endfor %}
+
+                <li class="mx-5">
+                    <a href="{{routes.cart_url}}"
+                        class="nav-link-lg whitespace-nowrap text-base text-gray-500 hover-text-gray-900">
+                        {% render 'icon-shopping-bag-bravo' %}
+                    </a>
+
+                    {% if shop.customer_accounts_enabled %}
+                    <a href="{{routes.account_login_url}}" class="text-base text-gray-500 hover-text-gray-900">Login</a>
+                    <a href="{{routes.account_register_url}}"
+                        class="text-base text-gray-500 hover-text-gray-900">Register</a>
+
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+
+
+        {% comment %} {% assign site_logo = settings.square-logo %}
+        {% if site_logo != blank %}
+        <img src="{{site_logo }}" alt="Logo">
+        {% else %}
+
+        {% endif %} {% endcomment %}
+
+    </div>
+</div>
+
+<style>
+    .site-contain{
+        max-width: 1370px;
+        margin: auto;
+    }
+    .nav-link-lg {
+        color: #fff;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.5s ease;
+        margin-left: 15px;
+        margin-right: 15px;
+
+    }
+
+    .nav-link-lg:hover {
+        /* text-decoration: underline; */
+    }
+
+    .nav-link-lg::before {
+        content: '';
+        /* Required for pseudo-elements */
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 0;
+        /* Initial width set to 0 */
+        height: 2px;
+        /* Height of the underline */
+        /* background-color: #333; Color of the underline */
+        background-color: #fff;
+        /* Color of the underline */
+        transition: width 0.3s ease;
+        /* Transition the width */
+    }
+
+    .nav-link-lg:hover::before {
+        width: 100%;
+    }
+</style>

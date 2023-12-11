@@ -1,0 +1,65 @@
+<div class="grid-overlay"></div>
+<div class="grid-overlay grid-overlay-2"></div>
+<div class="grid-overlay grid-overlay-3"></div>
+<div class="grid-overlay grid-overlay-4"></div>
+<div class="grid-overlay grid-overlay-5"></div>
+<div class="grid-overlay grid-overlay-6"></div>
+<div class="grid-overlay grid-overlay-7"></div>
+<div class="grid-overlay grid-overlay-8"></div>
+<div class="grid-overlay grid-overlay-9"></div>
+<div class="grid-overlay grid-overlay-10"></div>
+<div class="grid-overlay grid-overlay-11"></div>
+<div class="grid-overlay grid-overlay-12"></div>
+
+<script>
+    for(let i = 1; i < 13; i++){
+        console.log( (8.3 * i) + 2);
+    }
+</script>
+
+<style>
+    .grid-overlay {
+  position: fixed; /* Fixed position to overlay the entire page */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allows interaction with elements behind the overlay */
+  z-index: 9999; /* Ensure it's above other elements */
+}
+
+/* Create vertical lines to represent the columns */
+.grid-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 8.33333%; /* 100% divided by 12 columns = 8.33333% for each column */
+  background-color: rgba(255, 0, 0, 0.2); /* Transparent red color */
+  border-right: 1px solid rgba(0, 0, 0, 0.3); /* Border between columns */
+  pointer-events: none; /* Ensure the overlay is not interactive */
+}
+
+/* Create additional lines for the remaining columns */
+.grid-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0%; /* Adjust left position for each column */
+  width: 8.33333%;
+  /* Additional lines for other columns follow the same pattern */
+}
+.grid-overlay-2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10.333333%; /* Adjust left position for each column */
+  width: 8.33333%;
+  /* Additional lines for other columns follow the same pattern */
+}
+
+</style>
+
