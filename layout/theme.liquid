@@ -23,8 +23,14 @@
     {% comment %} {% section 'header' %} {% endcomment %}
     {% section 'header-square' %}
     {% comment %} {% section 'splash' %} {% endcomment %}
-    <main role="main">
+    <main role="main" style="background-color: #191919; height: 100vh;;">
       {{ content_for_layout }}
     </main>
   </body>
 </html>
+
+<style>
+  *{
+    color: #CCC;
+  }
+</style>
