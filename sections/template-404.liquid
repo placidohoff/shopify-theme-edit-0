@@ -1,9 +1,15 @@
-<h1>{{section.settings.title}}</h1>
-<p>{{section.settings.subtext_title}}</p>
+<section style="height: 50vh;" class="d-flex flex-column align-items-center justify-content-center pt-2 pb-2">
+    <h1>{{section.settings.title}}</h1>
+    <p>{{section.settings.subtext_title}}</p>
+
+    <a class="mt-5" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+</section>
 
 {% schema %}
 {
     "name": "Template 404",
+    "tag": "section",
+    // "class": "d-flex align-items-center, justify-content-center, pt-2, pb-2",
     "settings": [
         {
             "type": "text",
@@ -16,7 +22,20 @@
             "id": "subtext_title",
             "default": "The page you are requesting cannot be found",
             "label": "404 Subtext title"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "default": "Return to homepage",
+            "label": "Button Label"
+        },
+        {
+            "type": "text",
+            "id": "button_link",
+            "default": "/",
+            "label": "Button Link"
         }
-        ]
+        
+    ]
 }
 {% endschema %}
