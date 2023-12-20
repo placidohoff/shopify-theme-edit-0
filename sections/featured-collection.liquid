@@ -1,10 +1,10 @@
 {% for product in section.settings.featured_collection.products %}
     {% render 'product-card', product: product %}
 {% endfor %}
-{% else %}
-    {% for item in (1..4) %}
+
+    {% comment %} {% for item in (1..4) %}
         {% render 'product-card-placeholder' %}
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 
 {% schema %}
 {
