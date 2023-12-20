@@ -1,0 +1,47 @@
+<div class="d-flex flex-column items-align-center mt-5">
+    {% form 'contact' %}
+        <div class="mx-auto justify-content-center d-flex align-items-center px-4">
+            <div class="d-flex px-1 mb-3">
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <div class="px-3">
+                            <label class="text-capitalize" for="contact_name">Name</label>
+                            <input class="border pt-3 px-4 mb-3" type="text" name="contact[name]" id="contact_name">
+
+                        </div>
+                        <div class="px-3">
+                            <label for="contact_email">Email address</label>
+                            <input class="border pt-3 px-4 mb-3" type="text" name="contact[email]" id="contact_email">
+                    
+                        </div>
+                    </div>
+
+                    {% comment %} <div class="d-flex px-1 mb-3 justify-content-center"> {% endcomment %}
+                        <div class="px-3">
+                            <label for="contact_message">Message</label>
+                            <textarea name="contact_body" id="contact_message" cols="80" rows="10"></textarea>
+
+                        </div>
+                    {% comment %} </div> {% endcomment %}
+                </div>
+
+            </div>
+        </div>
+        
+        
+        
+        
+        <input type="submit" value="Submit message">
+    {% endform %}
+</div>
+
+{% schema %}
+{
+    "name": "Contact Form",
+    "presets": [
+        {
+            "name": "Contact Form"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,31 @@
+<div class="px-4 pt-5">
+    {% paginate collection.products by section.settings.number_of_products_per_page %}
+        {% comment %} <h1 class="display-4 text-center">{{collection.title}}</h1> {% endcomment %}
+        <h1 class="display-4 text-center mb-3">View our items</h1>
+
+
+        <div class="row d-flex justify-content-center">
+        {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+            {% else %}
+                <p>There are no products inside of this collection</p>
+        {% endfor %}
+
+        {% render 'pagination', pagination: paginate %}
+    {% endpaginate %}
+</div>
+
+{% schema %}
+{
+    "name": "Template Collection",
+    "settings": [
+        {
+            "type": "number",
+            "id": "number_of_products_per_page",
+
+            "default": 6,
+            "label": "Number of products per page"
+        }
+        ]
+}
+{% endschema %}

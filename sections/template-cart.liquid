@@ -1,0 +1,139 @@
+{% if cart.item_count > 0 %}
+    <div class="p-4">
+        <div class="d-flex flex-column mt-5 mx-auto">
+            <div class="d-flex align-items-end justify-content-between mt-5">
+                <h1>Your Cart</h1>
+                <a href="{{routes.all_products_collection_url}}">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column mt-5 mx-auto">
+        <form action="{{routes.cart_url}}" method="POST" novalidate>
+            <table class="table table-dark mx-auto" style="width: 98%;">
+                <thead>
+                    <th class="pt-3 ">Product</th>
+                    <th class="pt-3 " style="max-width: 50px;">Quantity</th>
+                    <th class="pt-3 ">Total Price</th>
+                </thead>
+                <tbody>
+                    {% for item in cart.items %}
+                        <tr class="table-row">
+                            <td class="pt-4 px-2 d-flex flex-column justify-content-center ">
+                                <a href="{{item.url}}"></a>
+                                {% if item.image %}
+                                    <img src="{{item.image | img_url:'small'}}" alt="{{item.title | escape}}" style="max-width: 125px;" class="img-fluid border">
+                                {% else %}
+                                    {{'product-1' |  placeholder_svg_tag:'img-fluid border'}}                                    
+                                {% endif %}
+                                {% comment %} </td> {% endcomment %}
+                                <div class="mt-3 px-2 d-flex flex-column justify-content-center" style="">
+                                    <a href="{{item.url}}" class="">{{item.product.title |  truncatewords: 5}}</a>
+                                    <span class="mt-2">{{item.variant.title}}</span>
+                                    <!--<a href="/cart/change?line=1&quantity=0" class="text-danger">remove</a>-->
+                                    <a href="{{routes.cart_change_url}}?line={{forloop.index}}&quantity=0" class="text-danger">remove</a>
+                                </div>
+                            </td>
+                            <td class="px-2 " style="max-width: 100px;">
+                                <input type="number" name="updates[]" style="max-width: 65px; max-height: 40px; color: #000; font-size: large;" min="1" id="{{forloop.index}}" value="{{item.quantity}}" class="border mt-3">
+                            </td>
+                            <td class=" pt-4 px-2">
+                                {{item.line_price |  money}}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% comment %} <div class="d-flex">
+                <div class="d-flex flex-column align-items-start">
+                    <label for="cart_notes">Cart notes</label>
+                    <textarea name="note" id="cart_notes" cols="30" rows="10"></textarea>
+
+                </div>
+            </div> {% endcomment %}
+
+            <div class="d-flex flex-column align-items-end justify-content-between mx-5">
+                {% for block in section.blocks %}
+                    {% case block.type %}
+                        {% when 'subtotal' %}
+                            <div class="mt-4">
+                                <h3>Subtotal: {{cart.total_price | money}}</h3>
+                            </div>
+                            
+                        {% when 'update_button' %}
+                            <div class="mt-3">
+                                <button type="submit" name="update" class="p-3 border">
+                                        Update
+                                </button> 
+                            </div>
+
+                        {% when 'checkout_button' %}
+                            <div class="mt-3">
+                                <button type="submit" name="checkout" class="p-3 border">
+                                    Checkout
+                                </button>
+                            </div>
+
+                        {% else %}
+                            
+                    {% endcase %}
+                {% endfor %}
+            </div>
+
+
+                {% comment %} <div class="">
+                        <div class="mt-4"></div>
+                        <div class="mt-4">
+                            
+                            
+                            
+                        </div>
+                </div> {% endcomment %}
+
+        </form>
+    </div>
+    {% else %}
+        <div class="pt-4 d-flex mx-auto align-items-center jusify-content-center">
+            <div class="text-center">
+                <h1 class="mt-4">Your Cart is empty</h1>
+                <div class="pt-4">
+                    <a href="{{routes.all_products_collection_url}}" class="border border-600 text-light bg-dark px-3 py-3">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    
+{% endif %}
+
+
+<style>
+    .{
+        background-color: #ccc !important;
+    }
+</style>
+
+{% schema %}
+{
+    "name": "Template Cart",
+    "blocks": [
+        {
+            "type": "subtotal",
+            "name": "subtotal",
+            "limit": 1
+        },
+        {
+            "type": "update_button",
+            "name": "Update Button",
+            "limit": 1
+        },
+        {
+            "type": "checkout_button",
+            "name": "Checkout Button",
+            "limit": 1
+        }
+    ],
+    "settings": [
+        
+        ]
+}
+{% endschema %}

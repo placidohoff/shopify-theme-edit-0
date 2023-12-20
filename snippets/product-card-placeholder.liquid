@@ -1,0 +1,39 @@
+{% comment %} <div class="container-fluid py-4"> {% endcomment %}
+    <div class="col-lg-4 m-2 border border-2 shadow-lg rounded-lg overflow-hidden prd-cntr" style="max-width: 400px;">
+    
+            <div>
+                {{'product-1' | placeholder_svg_tag: 'img-fluid w-100 h-100 object-fit-cover bg-gray-100'}}
+
+            </div>
+                
+                    
+
+
+            <div class="p-4 mt-4">
+                {% comment %} <span class="text-muted small">{{product.vendor}}</span> {% endcomment %}
+
+                <div class="d-flex justify-content-between">
+                    <a href="{{product.url}}" style="text-decoration: none;" class="text-secondary fw-bold">Placeholder Title</a>
+
+                    <p class="text-dark text-uppercase fw-bold d-block" >{{'9999 '| money}}</p>
+                </div>
+            </div>
+        
+
+    </div>
+{% comment %} </div> {% endcomment %}
+
+<style>
+    .prod-img{
+        transition: all 0.1s ease-in-out;
+        min-height: 240px;
+    }
+    .prod-img:hover{
+        transform: scale(1.08);
+    }
+
+    .prd-cntr{
+        /* background-color: #ccc; */
+        background-color: #c4c4c4;
+    }
+</style>

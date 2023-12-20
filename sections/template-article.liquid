@@ -1,0 +1,114 @@
+<article class="pt-5" itemscope itemtype="https://schema.org/BlogPosting">
+    {% for block in section.blocks %}
+        {% case block.type %}
+
+            {% when 'article_title' %}
+                <div class="d-flex justify-content-center align-items-center">
+                    <div style="max-width: 700px">
+                        <a href="{{blog.url}}">{{blog.title}}</a>
+                        <h1 itemprop="headline">{{article.title}}</h1>
+                    </div>
+                </div>
+
+    
+            {% when 'article_author' %}
+                {% if section.settings.enable_author %}
+                    <div itemscope itemtype="https://schema.org/Person">
+                        <small itemprop="author">{{article.author}}</small>
+                    </div>
+                {% endif %}
+    
+            {% when 'article_published_date' %}
+                {% if section.settings.enable_published_date %}
+                    <time></time>
+                    
+                {% endif %}
+            {% when 'featured_image' %}
+                <img src="{{article.image |  img_url: 'medium'}}" alt="{{article.image.alt}}" />
+    
+            {% when 'article_content' %}
+                <div>{{article.content}}</div>
+    
+            {% else %}
+                
+        {% endcase %}
+        
+    {% endfor %}
+</article>
+
+{% if blog.comments_enabled? %}
+    Hello World
+{% endif %}
+
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": {{article.title | json}},
+        "articleBody": {{article.content |  strip_html | json}},
+        {% if article.excerpt != blank %}
+            "description": {{article.excerpt |  strip_html | json}},
+        {% endif %}
+        {% if article.image %}
+            "image": [
+                {{article.image | img_url: "medium" |  prepend: "https" | json }}
+            ],
+        {% endif %}
+        "datePublished": {{article.published_at | date: format: "default"}},
+        "dateCreated": {{ article.created_at | date: format: "default" | json }},
+        "author": {
+            "@type": "Person",
+            "name": {{article.author |  json }}
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": {{ shop.name | json }}
+        }
+
+        
+    }
+</script>
+
+
+{% schema %}
+{
+    "name": "Template Article",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_author",
+            "default": true,
+            "label": "Display Author Name"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_published_date",
+            "default": true,
+            "label": "Display Published Date"
+        }
+        ],
+    "blocks": [
+        {
+            "type": "article_title",
+            "name": "Title",
+            "limit": 1
+        },
+        {
+            "type": "article_author",
+            "name": "Author",
+            "limit": 1
+        },
+        {
+            "type": "featured_image",
+            "name": "Thumbnail",
+            "limit": 1
+        },
+        {
+            "type": "article_content",
+            "name": "Content",
+            "limit": 1
+        }
+    ]
+}
+{% endschema %}

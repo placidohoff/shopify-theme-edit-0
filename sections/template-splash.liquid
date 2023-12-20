@@ -1,0 +1,82 @@
+<div class="splash-image site-contain">
+    <div class="row">
+        <div class="col">
+            <h2 style="font-size:xxx-large; color: #CCC; padding-top: 75px; font-style:italic;">{{section.settings.splash_text}}</h2>
+            <h3></h3>
+
+            <div class="d-flex justify-content-end" style="width: 70%; margin-top: 80px;">
+                <a href="{{routes.all_products_collection_url}}" class="btn btn-alpha"> Shop Now </a>
+                <a href="#" class="btn btn-bravo mx-3"> Learn More </a>
+            </div>
+        </div>
+        <div class="col">
+            
+            {% if section.settings.splash_image != blank %}
+                <img id="splashImage" class="img-fluid mt-3" loading="lazy" style="width: 55%" src="{{section.settings.splash_image |  img_url: 'large'}}" alt="ALT">
+                {% else %}
+
+                <img id="splashImage" class="img-fluid mt-3" loading="lazy" style="width: 55%" src="https://cdn.shopify.com/s/files/1/0590/6907/1420/files/square-logo-transparent.png?v=1702225342" alt="alt">
+            {% endif %}
+            {% comment %} <img class="img-fluid" src="{{section.settings.splash_image | img_url:'large'}}" alt="ALT"> {% endcomment %}
+
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .btn{
+        border: 1px solid #CCC;
+        font-weight: bold;
+        padding: 
+    }
+    .btn-alpha{
+        color: #191919;
+        background-color: #ccc;
+    }
+    .btn-bravo{
+        color: #ccc;
+    }
+    #splashImage {
+      opacity: 0;
+      transition: opacity 1s ease-in-out; /* Adding a transition for a smooth effect */
+    }
+</style>
+
+<script>
+    const img = document.getElementById('splashImage');
+    
+    img.onload = function() {
+      img.style.opacity = 1; // Change the opacity to 1 when the image is loaded
+    };
+  </script>
+
+{% schema %}
+{
+    "name": "Home Screen",
+    "settings": [
+        {
+            "type": "text",
+            "id": "splash_text",
+            "default": "Explore our collection!",
+            "label": "Display Text"
+        },
+        {
+            "type": "image_picker",
+            "id": "splash_image",
+            "label": "Homepage Image",
+            "info": "Select an image"
+
+        },
+        {
+      "type": "product_list",
+      "id": "carousel_images",
+      "label": "Carousel Images",
+      "info": "Select images for the carousel",
+      "max": 10
+    }
+        
+        ]
+}
+{% endschema %}

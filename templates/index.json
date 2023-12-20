@@ -1,0 +1,8 @@
+{
+    "sections": {
+        "featured-items":{
+            "type": "template-splash"
+        }
+    },
+    "order":["featured-items"]
+}
