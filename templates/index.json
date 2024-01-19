@@ -1,8 +1,12 @@
 {
-    "sections": {
-        "featured-items":{
-            "type": "template-splash"
-        }
-    },
-    "order":["featured-items"]
+  "sections": {
+    "featured-items": {
+      "type": "template-splash",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "featured-items"
+  ]
 }

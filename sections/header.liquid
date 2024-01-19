@@ -1,140 +1,159 @@
-
 <div class="position-relative bg-white" x-data="{isMobileMenuOpen: false}">
-    <div class="mx-auto px-4 sm:px-6">
-        <div class="d-flex justify-content-center align-items-center py-6 md:justify-content-start md:gap-10">
-            <!-- STORE NAME / STORE LOGO -->
-            <div class="d-flex justify-content-start flex-grow-1 overflow-hidden">
-                <h1 class="text-xl font-weight-bold overflow-hidden">{{shop.name}}</h1>
-            </div>
+  <div class="mx-auto px-4 sm:px-6">
+    <div class="d-flex justify-content-center align-items-center py-6 md:justify-content-start md:gap-10">
+      <!-- STORE NAME / STORE LOGO -->
+      <div class="d-flex justify-content-start flex-grow-1 overflow-hidden">
+        <h1 class="text-xl font-weight-bold overflow-hidden">{{ shop.name }}</h1>
+      </div>
 
-            <!-- MOBILE -->
-            <div class="ms-3 d-block d-md-none d-lg-none">
-                <div type="button" x-on:click="isMobileMenuOpen = true" class="bg-white p-2 d-inline-flex align-items-center justify-content-center focus-outline-none">
-                    {% render 'hamburger' %}
-                </div>
-            </div>
-
-            <!-- NAVIGATION MENU -->
-            <nav x-data="{open: false}" class="d-none d-md-flex align-items-center gap-10">
-
-                {% for link in linklists.main-menu.links %}
-                {% if link.links != blank %}
-
-                <div class="position-relative mx-2">
-                    <div x-on:click="open = ! open" type="button" class="d-inline-flex align-items-center text-base text-gray-500 hover-text-gray-900">
-                        {{link.title}} {% render 'chevron-down' %}
-                    </div>
-
-                    <!-- X-SHOW IS BOOLEAN -->
-                    <div x-show="open" @click.away="open = false"
-                        class="position-absolute start-50 translate-middle-x mt-5 px-2 max-w-md sm:px-0 lg-start-0 translate-middle-x">
-                        <div class="shadow-lg border ring ring-black ring-opacity-5 overflow-hidden rounded-lg">
-                            <div class="position-relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                {% for item in link.links %}
-                                    <!-- CREATE THE SUBLINK(s) -->
-                                    <a href="{{item.url}}" class="-m-3 p-3 d-flex align-items-center rounded-lg hover-bg-gray-100">
-                                        <div class="ms-4">
-                                            <p class="text-gray-900 text-base font-weight-medium">
-                                                {{item.title}}
-                                            </p>
-                                        </div>
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% else %}
-                <div class="position-relative mx-2">
-                    <a href="{{link.url}}" class="text-base text-gray-500 hover-text-gray-900">{{link.title}}</a>
-                </div>
-
-                {% endif %}
-
-                {% endfor %}
-            </nav>
-
-            <div class="d-none d-md-flex align-items-center justify-content-end flex-grow-1 gap-3">
-                <a href="{{routes.cart_url}}" class="whitespace-nowrap text-base text-gray-500 hover-text-gray-900">
-                    {% render 'icon-shopping-bag' %}
-                </a>
-
-                {% if shop.customer_accounts_enabled %}
-                    <a href="{{routes.account_login_url}}" class="text-base text-gray-500 hover-text-gray-900">Login</a>
-                    <a href="{{routes.account_register_url}}" class="text-base text-gray-500 hover-text-gray-900">Register</a>
-                
-                {% endif %}
-                            </div>
+      <!-- MOBILE -->
+      <div class="ms-3 d-block d-md-none d-lg-none">
+        <div
+          type="button"
+          x-on:click="isMobileMenuOpen = true"
+          class="bg-white p-2 d-inline-flex align-items-center justify-content-center focus-outline-none">
+          {% render 'hamburger' %}
         </div>
-    </div>
-    
+      </div>
 
-    <!---------------------------------  MOBILE  --------------------------------------->
-    <div x-show="isMobileMenuOpen" style="position: absolute; width: 100%;" class="absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden">
+      <!-- NAVIGATION MENU -->
+      <nav x-data="{open: false}" class="d-none d-md-flex align-items-center gap-10">
+
+        {% for link in linklists.main-menu.links %}
+          {% if link.links != blank %}
+
+            <div class="position-relative mx-2">
+              <div
+                x-on:click="open = ! open"
+                type="button"
+                class="d-inline-flex align-items-center text-base text-gray-500 hover-text-gray-900">
+                {{ link.title }} {% render 'chevron-down' %}
+              </div>
+
+              <!-- X-SHOW IS BOOLEAN -->
+              <div
+                x-show="open"
+                @click.away="open = false"
+                class="position-absolute start-50 translate-middle-x mt-5 px-2 max-w-md sm:px-0 lg-start-0 translate-middle-x">
+                <div class="shadow-lg border ring ring-black ring-opacity-5 overflow-hidden rounded-lg">
+                  <div class="position-relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                    {% for item in link.links %}
+                      <!-- CREATE THE SUBLINK(s) -->
+                      <a href="{{item.url}}" class="-m-3 p-3 d-flex align-items-center rounded-lg hover-bg-gray-100">
+                        <div class="ms-4">
+                          <p class="text-gray-900 text-base font-weight-medium">
+                            {{ item.title }}
+                          </p>
+                        </div>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% else %}
+            <div class="position-relative mx-2">
+              <a href="{{link.url}}" class="text-base text-gray-500 hover-text-gray-900">{{ link.title }}</a>
+            </div>
+
+          {% endif %}
+
+        {% endfor %}
+      </nav>
+
+      <div class="d-none d-md-flex align-items-center justify-content-end flex-grow-1 gap-3">
+        <button class="whitespace-nowrap text-base text-gray-500 hover-text-gray-900">
+          {% render 'icon-search' %}
+          <p>TEST</p>
+        </button>
+        <a href="{{routes.cart_url}}" class="whitespace-nowrap text-base text-gray-500 hover-text-gray-900">
+          {% render 'icon-shopping-bag' %}
+        </a>
+
+        {% if shop.customer_accounts_enabled %}
+          <a href="{{routes.account_login_url}}" class="text-base text-gray-500 hover-text-gray-900">Login</a>
+          <a href="{{routes.account_register_url}}" class="text-base text-gray-500 hover-text-gray-900">Register</a>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+
+  <!-- -------------------------------  MOBILE  ------------------------------------- -->
+  <div
+    x-show="isMobileMenuOpen"
+    style="position: absolute; width: 100%;"
+    class="absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden">
     <div class="shadow-lg rounded-lg ring-1 ring-black ring-opacity-5 bg-white w-full">
-        <div class="p-3 divide-y-2 divide-gray-50">
+      <div class="p-3 divide-y-2 divide-gray-50">
 
-            <!-- MOBILE MENU HEADER TITLE PLUS CLOSE BUTTON -->
-            <div class="d-flex aling-items-center justify-content-between pb-3">
-                <div>
-                    <h1 class="text-lg text-gray-500">{{section.settings.mobileMenuTitle}}</h1>
-                    {% comment %} <h1 class="text-lg text-gray-500">{{shop.name}}</h1> {% endcomment %}
+        <!-- MOBILE MENU HEADER TITLE PLUS CLOSE BUTTON -->
+        <div class="d-flex aling-items-center justify-content-between pb-3">
+          <div>
+            <h1 class="text-lg text-gray-500">{{ section.settings.mobileMenuTitle }}</h1>
+          {% comment %} <h1 class="text-lg text-gray-500">{{shop.name}}</h1> {% endcomment %}
+          </div>
+          <div class="-mr-2">
+            <div
+              type="button"
+              x-on:click="isMobileMenuOpen = false"
+              class="bg-white rounded-md p-2 text-gray-500">
+              {% render "icon-close" %}
+            </div>
+          </div>
+        </div>
+
+        <!-- MOBILE MENU RENDER LOGIC -->
+        {% for link in linklists.main-menu.links %}
+          {% if link.links != blank %}
+
+            <div class="relative ">
+              <div
+                type="button"
+                onclick="openDropdown()"
+                class="mobile-menu-item text-base m-3 text-gray-500 hover:text-gray-900 d-flex align-items-center justify-content-between w-full">
+                <div>{{ link.title }}</div>
+                {% render "chevron-down" %}
+              </div>
+
+              {% for child in link.links %}
+
+                <div id="catalog-mobile" class="d-none mobile-menu-item grid gap-y-7 py-3">
+                  <a href="#" class="m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+                    <span class="ml-3 text-base font-medium text-gray-500">{{ child.title }}</span>
+                  </a>
                 </div>
-                <div class="-mr-2">
-                    <div type="button" x-on:click="isMobileMenuOpen = false" class="bg-white rounded-md p-2 text-gray-500">
-                        {% render "icon-close" %}
-                    </div>
-                </div>
+
+              {% endfor %}
+
+
             </div>
 
-            <!-- MOBILE MENU RENDER LOGIC -->
-            {% for link in linklists.main-menu.links %}
-                {% if link.links != blank %}
-                    
-                    <div class="relative ">
-                        <div type="button" onclick="openDropdown()" class="mobile-menu-item text-base m-3 text-gray-500 hover:text-gray-900 d-flex align-items-center justify-content-between w-full">
-                            <div>{{link.title}}</div>
-                            {% render "chevron-down" %}
-                        </div>
+          {% else %}
+            <div class="mobile-menu-item">
+              <a href="#" class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+                {{ link.title }}
+              </a>
+            </div>
 
-                        {% for child in link.links %}
+          {% endif %}
 
-                        <div id="catalog-mobile" class="d-none mobile-menu-item grid gap-y-7 py-3">
-                            <a href="#" class="m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
-                                <span class="ml-3 text-base font-medium text-gray-500">{{child.title}}</span>
-                            </a>
-                        </div>
+        {% endfor %}
 
-                        {% endfor %}
-
-                        
-                        
-                    </div>
-
-                    {% else %}
-                    <div class="mobile-menu-item">
-                        <a href="#" class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
-                            {{link.title}}
-                        </a>
-                    </div>
-                    
-                {% endif %}
-                
-            {% endfor %}
-
-        </div>
+      </div>
     </div>
-</div>
+  </div>
 
 </div>
 
 <script>
     let isMobileCatalogDropdownOpen = false;
-
+  
     function openDropdown(){
         isMobileCatalogDropdownOpen = true;
         console.log(isMobileCatalogDropdownOpen)
-
+  
         let childMenu = document.getElementById("catalog-mobile");
         if(childMenu.classList.contains('d-none')){
             childMenu.classList.remove('d-none')
@@ -145,23 +164,23 @@
 </script>
 
 <style>
-    .mobile-menu-item:hover{
-        background-color: grey;
-    }
+  .mobile-menu-item:hover {
+    background-color: grey;
+  }
 </style>
 
 
 {% schema %}
-{
+  {
     "name": "Header",
     "settings": [
-        {
-            "type": "text",
-            "id": "mobileMenuTitle",
-            "label": "Title",
-            "default": "Menu",
-            "info": "Display title of the mobile menu"
-        }
-        ]
-}
+      {
+        "type": "text",
+        "id": "mobileMenuTitle",
+        "label": "Title",
+        "default": "Menu",
+        "info": "Display title of the mobile menu"
+      }
+    ]
+  }
 {% endschema %}

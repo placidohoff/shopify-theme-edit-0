@@ -1,0 +1,249 @@
+<div
+  id="home-collections"
+  class="fade-load"
+  style="padding: 0px;">
+  <div class="d-flex justify-content-center">
+    {% comment %} <h2 class="mb-5 mt-1">Shop by category
+                        </h2> {% endcomment %}
+  </div>
+
+  <div class="d-flex display-row" style="overflow-x: auto;">
+    <div class="col-lg-4 col-md-6 col-10">
+      {% comment %} Hoodies {% endcomment %}
+      <div class="cllctn-bx">
+        <img
+          class="img-fluid"
+          src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/hoodie-0_large.png?v=1702867760"
+          alt="Hoodie Collection">
+
+        <h4 class="cllctn-title">Hoodies</h4>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-10">
+      {% comment %} Sweats {% endcomment %}
+      <div class="cllctn-bx">
+
+        <img
+          class="img-fluid"
+          src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/shirt-1_large.png?v=1702867760"
+          alt="Hoodie Collection">
+
+        <h4 class="cllctn-title">Shirts</h4>
+      </div>
+
+    </div>
+    {% comment %} t-shirts {% endcomment %}
+    <div class="col-lg-4 col-md-6 col-10">
+
+      <div class="cllctn-bx">
+        <img
+          class="img-fluid"
+          src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/sweatpants-1_large.png?v=1702867760"
+          alt="Hoodie Collection"
+          style="width: 56%;">
+
+        <h4 class="cllctn-title">Sweatpants</h4>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-10">
+
+      <div class="cllctn-bx" style="justify-content: space-between;">
+        <img
+          class="img-fluid"
+          src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/hat-0_large.png?v=1702867760"
+          alt="Hoodie Collection">
+
+        <h4 class="cllctn-title">Accessories</h4>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-10">
+
+      <div class="cllctn-bx">
+        <img
+          class="img-fluid"
+          src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/shirt-1_large.png?v=1702867760"
+          alt="Hoodie Collection">
+
+        <h4 class="cllctn-title">Accessories</h4>
+      </div>
+
+    </div>
+
+
+  </div>
+
+{% comment %} <div class="text-center mt-3">
+                                                                                                                                              <button class="btn btn-primary prev-page">Previous</button>
+                                                                                                                                              <span class="page-info ml-2 mr-2"></span>
+                                                                                                                                              <button class="btn btn-primary next-page">Next</button>
+        </div> {% endcomment %}
+</div>
+
+<style>
+  @media only screen and (min-width: 1108px) {
+    #home-collections {
+    ;
+    margin-top: 250px !important;
+  }
+}
+.cllctn-bx {
+  border: 1px solid;
+  overflow: hidden;
+  border-radius: 5px;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+}
+.cllctn-bx > img {
+  margin-bottom: -7px;
+  margin-left: auto;
+  margin-right: auto;
+  /* max-width: 65%; */
+  max-width: 100%;
+  transition: all 0.3s ease-in-out;
+  max-height: 370px !important;
+
+}
+.cllctn-bx > img:hover {
+  transform: scale(1.25);
+}
+.cllctn-title {
+  position: relative;
+  bottom: 0 !important;
+  /* height: 94%; */
+  height: 10%;
+  bottom: 20px;
+  background-color: grey;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  z-index: 1 !important;
+}
+
+
+.display-row {
+;
+/* overflow-x: auto;  */
+/* height: 455px; */
+}
+
+.display-row > .col-lg-4 {
+  margin: 9px;
+  overflow: hidden;
+  height: 96 %%
+}
+
+
+/*
+
+   .display-row .col-lg-4 { 
+   transition: transform 0.5s ease-in-out; 
+   transform: translateX(0); 
+   } 
+
+   .display-row .col-lg-4.hidden { 
+   transform: translateX(-100%); 
+   } 
+
+   .display-row.slide-left .col-lg-4 { 
+   transform: translateX(-100%); 
+   } 
+
+   .display-row.slide-right .col-lg-4 { 
+   transform: translateX(100%); 
+   } 
+*/
+
+.display-row::-webkit-scrollbar {
+  width: 12px;
+  height: 10px;
+}
+
+.display-row::-webkit-scrollbar-track {
+  /* background: #f1f1f1; */
+  background: #191919 !important;
+}
+
+.display-row::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+
+.display-row::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+</style>
+
+{% comment %} <script>
+                                                                                                                                      document.addEventListener('DOMContentLoaded', function() {
+                                                                                                                                      const itemsPerPage = 3; // Adjust the number of items per page
+                                                                                                                                      let currentPage = 1;
+                                                                                                                                      const totalItems = document.querySelectorAll('.display-row .col-lg-4').length;
+                                                                                                                                      const totalPages = Math.ceil(totalItems / itemsPerPage);
+                                                                                                                                  
+                                                                                                                                      function showItemsForPage(page) {
+                                                                                                                                          const startIndex = (page - 1) * itemsPerPage;
+                                                                                                                                          const endIndex = startIndex + itemsPerPage;
+                                                                                                                                  
+                                                                                                                                          const items = document.querySelectorAll('.display-row .col-lg-4');
+                                                                                                                                          items.forEach(function(item, index) {
+                                                                                                                                              if (index >= startIndex && index < endIndex) {
+                                                                                                                                                  item.classList.remove('hidden');
+                                                                                                                                              } else {
+                                                                                                                                                  item.classList.add('hidden');
+                                                                                                                                              }
+                                                                                                                                          });
+                                                                                                                                  
+                                                                                                                                          document.querySelector('.page-info').innerText = `Page ${currentPage} of ${totalPages}`;
+                                                                                                                                      }
+                                                                                                                                  
+                                                                                                                                      showItemsForPage(currentPage);
+                                                                                                                                  
+                                                                                                                                      document.querySelector('.next-page').addEventListener('click', function() {
+                                                                                                                                          if (currentPage < totalPages) {
+                                                                                                                                              currentPage++;
+                                                                                                                                              document.querySelector('.display-row').classList.add('slide-left');
+                                                                                                                                              showItemsForPage(currentPage);
+                                                                                                                                              setTimeout(() => {
+                                                                                                                                                  document.querySelector('.display-row').classList.remove('slide-left');
+                                                                                                                                              }, 0); // Adjust the duration to match your transition duration
+                                                                                                                                          }
+                                                                                                                                      });
+                                                                                                                                  
+                                                                                                                                      document.querySelector('.prev-page').addEventListener('click', function() {
+                                                                                                                                          if (currentPage > 1) {
+                                                                                                                                              currentPage--;
+                                                                                                                                              document.querySelector('.display-row').classList.add('slide-right');
+                                                                                                                                              showItemsForPage(currentPage);
+                                                                                                                                              setTimeout(() => {
+                                                                                                                                                  document.querySelector('.display-row').classList.remove('slide-right');
+                                                                                                                                              }, 0); // Adjust the duration to match your transition duration
+                                                                                                                                          }
+                                                                                                                                      });
+                                                                                                                                  });
+                                                                                                                                  
+                                                                                                                                  
+</script> {% endcomment %}
+
+{% comment %} {% for collection in collections %}
+                                                                                                                                      <div class="w-full py-6 px-3">
+                                                                                                                                          <div class="border overflow-hidden d-flex">
+                                                                                                                                              <a href="{{collection.url}}">
+                                                                                                                                                  <div class="h-80 overflow-hidden">
+                                                                                                                                                      {% if collection.featured_image != blank %}
+                                                                                                                                                          {% assign collection_image = collection.featured_image %}
+                                                                                                                                                          {% else %}
+                                                                                                                                                              {% assign collection_image = collection.products.first.image  %}
+                                                                                                                                                      {% endif %}
+                                                                                                                                  
+                                                                                                                                                      <img src="{{collection_image |  img_url: 'medium'}}" alt="{{collection.title | escape}}">
+                                                                                                                                                  </div>
+                                                                                                                                              </a>
+                                                                                                                                              <h4 class="mx-5 mt-5 fst-italic"><a class="text-reset" href="{{collection.url}}">{{collection.title}}</a></h4>
+                                                                                                                                          </div>
+                                                                                                                                      </div>
+{% endfor %} {% endcomment %}

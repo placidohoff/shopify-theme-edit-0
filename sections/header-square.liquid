@@ -1,129 +1,423 @@
-<div style="padding: 15px; padding-bottom: 35px; background: linear-gradient(to bottom, #000, #191919);">
-    <div class="d-flex justify-content-between site-contain">
-        {% comment %} <img src="" alt="Square logo"> {% endcomment %}
-        <a href="/">
-            <img class="img-fluid" style="width: 70px;"
-                src="https://cdn.shopify.com/s/files/1/0590/6907/1420/files/square-logo-transparent.png?v=1702225342"
-                alt="Logo">
-        </a>
+<div id="topBanner" style="padding: 15px; padding-bottom: 35px; background: linear-gradient(to bottom, #000, #191919);">
+  <div class="d-flex justify-content-between site-contain">
+    {% comment %} <img src="" alt="Square logo"> {% endcomment %}
+    <div id="square-logo-container">
+      <img
+        id="square-logo"
+        class="img-fluid"
+        style="width: 70px;"
+        src="https://cdn.shopify.com/s/files/1/0590/6907/1420/files/square-logo-transparent.png?v=1702225342"
+        alt="Logo">
+    </div>
 
 
-        <nav x-data="{open: false}" class="d-none d-md-flex gap-10">
-            <ul style="list-style: none; display: flex; margin: 0; align-items: center;">
-                {% for link in linklists.menu-square.links %}
-                {% if link.links != blank %}
+    <nav
+      id="main-nav-menu"
+      x-data="{open: false, searchBarOpen: false}"
+      class="gap-10">
+      <ul style="list-style: none; display: flex; margin: 0; align-items: center;">
+        {% for link in linklists.menu-square.links %}
+          {% if link.links != blank %}
 
-                <li class="position-relative mx-2">
-                    <div x-on:click="open = ! open" type="button"
-                        class="d-inline-flex align-items-center text-base text-gray-500 hover-text-gray-900">
-                        {{link.title}} {% render 'chevron-down' %}
-                    </div>
+            <li class="position-relative mx-2">
+              <div
+                x-on:click="open = ! open"
+                type="button"
+                class="d-inline-flex align-items-center text-base text-gray-500 hover-text-gray-900 nav-link-lg">
+                {{ link.title }} {% render 'chevron-down' %}
+              </div>
 
-                    <!-- X-SHOW IS BOOLEAN -->
-                    <ul x-show="open" @click.away="open = false"
-                        class="position-absolute start-50 translate-middle-x mt-5 px-2 max-w-md sm:px-0 lg-start-0 translate-middle-x">
-                        <li class="shadow-lg border ring ring-black ring-opacity-5 overflow-hidden rounded-lg">
-                            <div class="position-relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                {% for item in link.links %}
-                                <!-- CREATE THE SUBLINK(s) -->
-                                <a href="{{item.url}}"
-                                    class="nav-link-lg -m-3 p-3 d-flex align-items-center rounded-lg hover-bg-gray-100">
-                                    <div class="ms-4">
-                                        <p class="text-gray-900 text-base font-weight-medium">
-                                            {{item.title}}
-                                        </p>
-                                    </div>
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </li>
-                    </ul>
+              <!-- X-SHOW IS BOOLEAN -->
+              <ul
+                x-show="open"
+                @click.away="open = false"
+                class="position-absolute start-50 translate-middle-x mt-5 px-2 max-w-md sm:px-0 lg-start-0 translate-middle-x">
+                <li class="shadow-lg border ring ring-black ring-opacity-5 overflow-hidden rounded-lg">
+                  <div class="position-relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                    {% for item in link.links %}
+                      <!-- CREATE THE SUBLINK(s) -->
+                      <a href="{{item.url}}" class="nav-link-lg -m-3 p-3 d-flex align-items-center rounded-lg hover-bg-gray-100">
+                        <div class="ms-4">
+                          <p class="text-gray-900 text-base font-weight-medium">
+                            {{ item.title }}
+                          </p>
+                        </div>
+                      </a>
+                    {% endfor %}
+                  </div>
                 </li>
+              </ul>
+            </li>
 
-                {% else %}
-                <li class="position-relative mx-2">
-                    <a href="{{link.url}}"
-                        class="nav-link-lg text-base text-gray-500 hover-text-gray-900">{{link.title}}</a>
-                </li>
+          {% else %}
+            <li class="position-relative mx-2">
+              <a href="{{link.url}}" class="nav-link-lg text-base text-gray-500 hover-text-gray-900">{{ link.title }}</a>
+            </li>
 
-                {% endif %}
+          {% endif %}
 
-                {% endfor %}
+        {% endfor %}
 
-                <li class="mx-5">
-                    <a href="{{routes.cart_url}}"
-                        class="nav-link-lg whitespace-nowrap text-base text-gray-500 hover-text-gray-900">
-                        {% render 'icon-shopping-bag-bravo' %}
-                    </a>
+        <!-- SHOPPING CART & LOGIN/REGISTER -->
+        <li class="mx-5 d-flex">
+          <button
+            onclick="toggleSearchBar()"
+            x-on:click="searchBarOpen = true"
+            class="whitespace-nowrap text-base text-gray-500 hover-text-gray-900 mx-3">
+            {% render 'icon-search' %}
 
-                    {% if shop.customer_accounts_enabled %}
-                    <a href="{{routes.account_login_url}}" class="text-base text-gray-500 hover-text-gray-900">Login</a>
-                    <a href="{{routes.account_register_url}}"
-                        class="text-base text-gray-500 hover-text-gray-900">Register</a>
+          </button>
+          <a href="{{routes.cart_url}}" class="nav-link-lg whitespace-nowrap text-base text-gray-500 hover-text-gray-900">
+            {% render 'icon-shopping-bag-bravo' %}
+          </a>
 
-                    {% endif %}
-                </li>
-            </ul>
-        </nav>
+          {% if shop.customer_accounts_enabled %}
+            <a href="{{routes.account_login_url}}" class="text-base text-gray-500 hover-text-gray-900">Login</a>
+            <a href="{{routes.account_register_url}}" class="text-base text-gray-500 hover-text-gray-900">Register</a>
+
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+
+    <div x-show="searchBarOpen" class="w-100 absolute top-0 bg-white border">
+      <div class="h-40 d-flex justify-content-center align-items-center"></div>
+    </div>
 
 
-        {% comment %} {% assign site_logo = settings.square-logo %}
-        {% if site_logo != blank %}
-        <img src="{{site_logo }}" alt="Logo">
-        {% else %}
+    <div
+      id="mobile-nav-menu"
+      class=""
+      onclick="toggleMobileMenu()">
+      <div style="padding: 10px; border: 1px solid; border-radius: 5px;">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          data-slot="icon"
+          class="w-9 h-9">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+        </svg>
+      </div>
 
-        {% endif %} {% endcomment %}
 
     </div>
+
+
+  </div>
+
+  <div class="site-contain d-none d-md-block d-lg-block">
+    <div
+      id="searchbar-container-desktop"
+      style="width: 94%;"
+      class="d-flex justify-content-end mt-4 hide-bravo animate-slide">
+
+
+      <form
+        action="{{routes.search_url}}"
+        method="get"
+        class="d-flex justify-content-end"
+        style="width: 100%;">
+        <input
+          id="searchbar-desktop"
+          name="q"
+          type="search"
+          class="animate-slide hide-bravo"
+          style="border-radius: 5px; text-align: end; width: 80%; max-width: 1145px; padding-right: 5px; color:#000; max-width: 700px;"
+          placeholder="Search">
+        <button
+          type="submit"
+          id="search-button-desktop"
+          style="overflow: hidden;"
+          class="btn btn-success ml-2 mr-1 animate-slide hide-bravo">Search</button>
+        <button
+          id="search-cancel-desktop"
+          style="overflow: hidden;"
+          class="btn btn-danger mx-2 animate-slide hide-bravo">Cancel</button>
+
+      </form>
+
+
+    </div>
+
+
+  </div>
 </div>
 
+<!-- Mobile Menu Dropdown Items -->
+<div style="overflow-y: hidden;">
+  <div
+    id="mobile-menu-screen"
+    class="hide"
+    style="background-color: #333333;">
+    <nav>
+      <ul class="d-flex flex-column align-items-center justify-content-center">
+        {% for link in linklists.menu-square.links %}
+          <!-- Does the menu-item contain sub-items -->
+          {% if link.links != blank %}
+
+            <li style="margin-left: 25px;" class="position-relative mbl-lst-itm">
+              <div
+                x-on:click="open = ! open"
+                type="button"
+                class="d-inline-flex align-items-center text-base text-gray-500 hover-text-gray-900 nav-link-lg">
+                {{ link.title }} {% render 'chevron-down' %}
+              </div>
+
+              <!-- DISPLAY: NONE FOR NOW -->
+              <!-- X-SHOW IS BOOLEAN -->
+              <ul
+                style="display: none;"
+                x-show="open"
+                @click.away="open = false"
+                class="position-absolute start-50 translate-middle-x mt-5 px-2 max-w-md sm:px-0 lg-start-0 translate-middle-x">
+                <li class="shadow-lg border ring ring-black ring-opacity-5 overflow-hidden rounded-lg">
+                  <div class="position-relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                    {% for item in link.links %}
+                      <!-- CREATE THE SUBLINK(s) -->
+                      <a href="{{item.url}}" class="nav-link-lg -m-3 p-3 d-flex align-items-center rounded-lg hover-bg-gray-100">
+                        <div class="ms-4">
+                          <p class="text-gray-900 text-base font-weight-medium">
+                            {{ item.title }}
+                          </p>
+                        </div>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+          {% else %}
+            <li class="position-relative mbl-lst-itm">
+              <a href="{{link.url}}" class="nav-link-lg text-base text-gray-500 hover-text-gray-900">{{ link.title }}</a>
+            </li>
+
+          {% endif %}
+
+        {% endfor %}
+
+        <!-- SHOPPING CART & LOGIN/REGISTER (Mobile) -->
+        <li class="mx-5 mt-2 mbl-lst-itm d-flex flex-column">
+          <button class="whitespace-nowrap text-base text-gray-500 hover-text-gray-900 mx-auto my-4">
+            {% render 'icon-search' %}
+
+          </button>
+          <a
+            href="{{routes.cart_url}}"
+            style="border: 1px solid; padding: 15px; border-radius: 5px;"
+            class="nav-link-lg whitespace-nowrap text-base text-gray-500 hover-text-gray-900">
+              {% comment %} {% render 'icon-shopping-bag-bravo' %} {% endcomment %}
+            Shopping Cart: (0 items)
+          </a>
+
+          {% if shop.customer_accounts_enabled %}
+            <a href="{{routes.account_login_url}}" class="text-base text-gray-500 hover-text-gray-900">Login</a>
+            <a
+              href="{{routes.account_register_url}}"
+              class="text-base text-gray-500 hover-text-gray-900"
+              style="border: 1px solid; padding: 15px; border-radius: 5px;">Register</a>
+
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+
+</div>
+
+
 <style>
-    .site-contain{
-        max-width: 1370px;
-        margin: auto;
-    }
-    .nav-link-lg {
-        color: #fff;
-        font-weight: 500;
-        text-decoration: none;
-        transition: all 0.5s ease;
-        margin-left: 15px;
-        margin-right: 15px;
+  .animate-slide {
+    transition: all 0.1s ease-in-out;
+  }
+  /* #searchbar-desktop {} */
+  .mbl-lst-itm {
+    padding: 15px;
+  }
+  .mbl-lst-itm > a {
+    font-size: x-large;
+  }
+  .mbl-lst-itm > div {
+    font-size: x-large;
+  }
+  .w-9 {
+    width: 2.5rem;
+  }
+  .h-9 {
+    width: 2.5rem;
+  }
+  .site-contain {
+    max-width: 1370px;
+    margin: auto;
+  }
+  .nav-link-lg {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    margin-left: 15px;
+    margin-right: 15px;
 
+  }
+
+
+  .nav-link-lg::before {
+    content: '';
+    /* Required for pseudo-elements */
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    /* Initial width set to 0 */
+    height: 2px;
+    /* Height of the underline */
+    /* background-color: #333; Color of the underline */
+    background-color: #fff;
+    /* Color of the underline */
+    transition: width 0.3s ease;
+    /* Transition the width */
+  }
+
+  .mbl-lst-itm > a:hover::before {
+    bottom: 8px !important;
+  }
+
+  .mbl-lst-itm > div:hover::before {
+    bottom: 8px !important;
+  }
+
+  .nav-link-lg:hover::before {
+    width: 100%;
+  }
+
+  #main-nav-menu {
+    display: flex;
+  }
+  #mobile-nav-menu {
+    display: none;
+  }
+
+  #square-logo-container {
+    margin-left: 5%;
+  }
+
+  @media only screen and (max-width: 720px) {
+    #main-nav-menu {
+      display: none !important;
+    }
+    #mobile-nav-menu {
+      display: flex;
+      align-items: center;
+    }
+    #mobile-nav-menu:hover {
+      cursor: pointer;
+    }
+    #square-logo-container {
+      margin-left: auto !important;
+      margin-right: auto !important;
     }
 
-    .nav-link-lg:hover {
-        /* text-decoration: underline; */
-    }
+  }
 
-    .nav-link-lg::before {
-        content: '';
-        /* Required for pseudo-elements */
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 0;
-        /* Initial width set to 0 */
-        height: 2px;
-        /* Height of the underline */
-        /* background-color: #333; Color of the underline */
-        background-color: #fff;
-        /* Color of the underline */
-        transition: width 0.3s ease;
-        /* Transition the width */
-    }
+  .hide-bravo {
+    height: 0;
+    padding: 0;
+    border: none !important;
+  }
 
-    .nav-link-lg:hover::before {
-        width: 100%;
-    }
+  .hide {
+    /* height: 0%;         */
+    /* display: none; */
+    max-height: 0;
+  }
+
+  .revealed {
+    /* height: 100%; */
+    /* display: block; */
+    max-height: 100%;
+  }
+
+  #mobile-menu-screen {
+    transition: all 0.3s ease-in-out;
+    position: fixed;
+    top: 120px;
+    width: 100%;
+    z-index: 5;
+    height: 100%;
+    /* max-height: 0; */
+    overflow: hidden;
+  }
+
+  .sticky-banner {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    padding: 15px !important;
+  }
 </style>
 
+<script>
+    function toggleMobileMenu(){
+        let mobileMenu = document.querySelector("#mobile-menu-screen")
+        let topBanner = document.querySelector('#topBanner')
+  
+        if (mobileMenu.classList.contains("hide")) {
+          mobileMenu.classList.remove("hide");
+          mobileMenu.classList.add("revealed");
+          topBanner.classList.add('sticky-banner')
+          // mobileMenu.style.maxHeight = "100%";
+        } else {
+          // mobileMenu.style.maxHeight = "0%";
+          mobileMenu.classList.remove("revealed");
+          mobileMenu.classList.add("hide");
+          topBanner.classList.remove('sticky-banner')
+        }
+    }
+  
+    function toggleSearchBar(){
+      let searchBarContainer = document.querySelector("#searchbar-container-desktop");
+      let searchBar = document.querySelector("#searchbar-desktop");
+      let searchBtn = document.querySelector("#search-button-desktop");
+      let searchExit = document.querySelector("#search-cancel-desktop");
+      
+  
+      if(searchBar.classList.contains("hide-bravo")){
+        searchBarContainer.classList.remove("hide-bravo")
+        searchBarContainer.classList.add("revealed")
+        searchBar.classList.remove("hide-bravo")
+        searchBar.classList.add("revealed")
+        searchBtn.classList.remove("hide-bravo")
+        searchBtn.classList.add("revealed")
+        searchExit.classList.remove("hide-bravo")
+        searchExit.classList.add("revealed")
+      }else {
+          // mobileMenu.style.maxHeight = "0%";
+          searchBarContainer.classList.remove("revealed");
+          searchBarContainer.classList.add("hide-bravo");
+          searchBar.classList.remove("revealed");
+          searchBar.classList.add("hide-bravo");
+          searchBtn.classList.remove("revealed");
+          searchBtn.classList.add("hide-bravo");
+          searchExit.classList.remove("revealed");
+          searchExit.classList.add("hide-bravo");
+        }
+  
+        //MUST TRANSITION THE ELEMENT'S HEIGHT INSTEAD OF MAX-HEIGHT. ALSO ELIMINATE PADDING-Y
+  
+    }
+</script>
 
-{% comment %} {% schema %}
-{
-    "name": " ",
-    "settings": [
-        
-        ]
-}
-{% endschema %} {% endcomment %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": []
+  }
+{% endschema %}

@@ -1,41 +1,47 @@
 {% comment %} <div class="container-fluid py-4"> {% endcomment %}
-    <div class="col-lg-4 m-2 border border-2 shadow-lg rounded-lg overflow-hidden prd-cntr" style="max-width: 400px;">
-    
-            <a href="{{product.url}}" class="text-decoration-none">
-                {% if product.featured_image %}
-                    {% comment %} <div class="h-80 overflow-hidden"> {% endcomment %}
-                        <img src="{{product.featured_image |  img_url: 'medium' }}" alt="{{product.featured_image.alt}}" class="img-fluid w-70 object-fit-cover mx-auto prod-img" />
-                    {% comment %} </div> {% endcomment %}
-                {% else %}
-                    {{'product-1' | placeholder_svg_tag: 'img-fluid w-100 h-100 object-fit-cover bg-gray-100'}}
-                {% endif %}
-            </a>
+<div class="col-lg-4 p-2 border border-2 shadow-lg rounded-lg overflow-hidden prd-cntr" style="max-width: 400px;">
 
-            <div class="p-4 mt-4">
-                {% comment %} <span class="text-muted small">{{product.vendor}}</span> {% endcomment %}
+  <a href="{{product.url}}" class="text-decoration-none">
+    {% if product.featured_image %}
+      {% comment %} <div class="h-80 overflow-hidden"> {% endcomment %}
+      <img
+        src="{{product.featured_image |  img_url: 'medium' }}"
+        alt="{{product.featured_image.alt}}"
+        class="img-fluid w-70 object-fit-cover mx-auto prod-img" />
+    {% comment %} </div> {% endcomment %}
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'img-fluid w-100 h-100 object-fit-cover bg-gray-100' }}
+    {% endif %}
+  </a>
 
-                <div class="d-flex justify-content-between">
-                    <a href="{{product.url}}" style="text-decoration: none;" class="text-secondary fw-bold">{{product.title |  capitalize}}</a>
+  <div class="p-4 mt-4">
+    {% comment %} <span class="text-muted small">{{product.vendor}}</span> {% endcomment %}
 
-                    <p class="text-dark text-uppercase fw-bold d-block" >{{product.price | money}}</p>
-                </div>
-            </div>
-        
+    <div class="d-flex justify-content-between">
+      <a
+        href="{{product.url}}"
+        style="text-decoration: none;"
+        class="text-secondary fw-bold">{{ product.title | capitalize }}</a>
 
+      <p class="text-dark text-uppercase fw-bold d-block">{{ product.price | money }}</p>
     </div>
+  </div>
+
+
+</div>
 {% comment %} </div> {% endcomment %}
 
 <style>
-    .prod-img{
-        transition: all 0.1s ease-in-out;
-        min-height: 240px;
-    }
-    .prod-img:hover{
-        transform: scale(1.08);
-    }
+  .prod-img {
+    transition: all 0.1s ease-in-out;
+    min-height: 240px;
+  }
+  .prod-img:hover {
+    transform: scale(1.08);
+  }
 
-    .prd-cntr{
-        /* background-color: #ccc; */
-        background-color: #c4c4c4;
-    }
+  .prd-cntr {
+    /* background-color: #ccc; */
+    background-color: #c4c4c4;
+  }
 </style>

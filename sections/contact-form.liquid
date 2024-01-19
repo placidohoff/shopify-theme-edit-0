@@ -1,47 +1,85 @@
+{% comment %} 
+                                              
+                                               Liquid forms must have at a minimum [email] and [body]. Contact is an array, so keys such as [name], [email], etc, indicate the index and it is required for liquid forms.
+                                              
+{% endcomment %}
+
 <div class="d-flex flex-column items-align-center mt-5">
-    {% form 'contact' %}
-        <div class="mx-auto justify-content-center d-flex align-items-center px-4">
-            <div class="d-flex px-1 mb-3">
-                <div class="d-flex flex-column">
-                    <div class="d-flex">
-                        <div class="px-3">
-                            <label class="text-capitalize" for="contact_name">Name</label>
-                            <input class="border pt-3 px-4 mb-3" type="text" name="contact[name]" id="contact_name">
+  {% form 'contact' %}
 
-                        </div>
-                        <div class="px-3">
-                            <label for="contact_email">Email address</label>
-                            <input class="border pt-3 px-4 mb-3" type="text" name="contact[email]" id="contact_email">
-                    
-                        </div>
-                    </div>
+    {% if form.errors %}
+      <p>Message not sent</p>
+      <ul>
+        {% for error in form.errors %}
+          <span>{{ form.errors.message[error] }}</span>
+        {% endfor %}
+      </ul>
+    {% elsif form.posted_successfully? %}
+      <p>Message sent successfully</p>
 
-                    {% comment %} <div class="d-flex px-1 mb-3 justify-content-center"> {% endcomment %}
-                        <div class="px-3">
-                            <label for="contact_message">Message</label>
-                            <textarea name="contact_body" id="contact_message" cols="80" rows="10"></textarea>
+    {% endif %}
 
-                        </div>
-                    {% comment %} </div> {% endcomment %}
-                </div>
+    <div class="mx-auto justify-content-center d-flex align-items-center px-4">
+      <div class="d-flex flex-column px-3 mb-3">
 
-            </div>
+        {% comment %} <div class="d-flex flex-column"> {% endcomment %}
+        <div class="row">
+
+          <div class="d-flex flex-column col-lg-6 col-sm-12">
+            <label class="text-capitalize" for="contact_name">Name</label>
+            <input
+              class="border pt-3 px-4 mb-3"
+              type="text"
+              name="contact[name]"
+              id="contact_name">
+
+          </div>
+
+          <div class="d-flex flex-column col-lg-6 col-sm-12">
+            <label for="contact_email">Email address</label>
+            <input
+              class="border pt-3 px-4 mb-3"
+              type="text"
+              name="contact[email]"
+              id="contact_email">
+
+          </div>
+
         </div>
-        
-        
-        
-        
-        <input type="submit" value="Submit message">
-    {% endform %}
+
+        {% comment %} </div> {% endcomment %}
+
+
+        <div class="d-flex flex-column">
+          <label for="contact_message">Message</label>
+          <textarea
+            name="contact[body]"
+            id="contact_message"
+            cols="80"
+            rows="10"></textarea>
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <input
+        type="submit"
+        value="Submit message"
+        style="border: 1px solid #ccc; padding: 10px; font-weight: 500; background-color: #ccc; color: #000; border-radius: 20px;">
+    </div>
+  {% endform %}
 </div>
 
 {% schema %}
-{
+  {
     "name": "Contact Form",
     "presets": [
-        {
-            "name": "Contact Form"
-        }
+      {
+        "name": "Contact Form"
+      }
     ]
-}
+  }
 {% endschema %}

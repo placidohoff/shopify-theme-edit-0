@@ -1,0 +1,112 @@
+<div id="footer-square" style="background: linear-gradient(to top, #000,#191919); padding-bottom: 50px;">
+  <div
+    id="footer-container"
+    class="row site-contain px-1"
+    style="">
+    <div class="col-lg-4 col-md-6 col-sm-12 footer-header mb-5">
+      <div class="footer-section">
+        <h5>JOIN OUR LIST</h5>
+        <span>Sign up to receive 10% off your first order and early access to new arrivals, sales and more!</span>
+        <form action="" class="mt-3 d-flex flex-column">
+          <input
+            class="py-2 px-1"
+            type="email"
+            placeholder="Enter your email"
+            style="color: #000;" />
+          <input
+            class="mt-3 py-2 outlined"
+            style="border: 1px solid"
+            type="submit"
+            value="Subscribe">
+        </form>
+
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 footer-header">
+      <div class="footer-section">
+        <h5>Customer Support</h5>
+        <div class="footer-links d-flex flex-column">
+          <a style="margin-left: 0 !important;" href="#">Terms of service</a>
+          <a href="#">Returns</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-12 footer-header">
+      <div class="footer-section">
+        <h5>Follow Us</h5>
+        <div class="footer-links social-links d-flex justify-content-even">
+          <a class="mx-2" href="#">{% render 'icon-facebook' %}</a>
+          <a class="mx-2" href="#">{% render 'icon-instagram' %}</a>
+          <a class="mx-2" href="#">{% render 'icon-twitter-x' %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #footer-square {
+    padding-top: 200px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    #footer-square {
+      padding-top: 50px !important;
+    }
+  }
+  .footer-links > a > svg {
+    background-color: #000;
+    fill: #ccc;
+    height: 30px;
+    width: 30px;
+  }
+  .social-links {
+  ;
+  /* justify-content: space-between; */
+}
+#footer-container {
+  border-top: 1px solid #ccc;
+  padding: 25px;
+}
+#footer-container > col {}
+
+.footer-header {
+;
+/* text-decoration: underline; */
+/* border-bottom: 1px solid #ccc; */
+}
+
+.footer-section {
+  width: 80%;
+  font-size: 0.9rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer-section > h5 {
+  /* text-decoration: underline; */
+  width: 100%;
+  /* border-bottom: 1px solid #ccc; */
+  padding-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.footer-links > a {
+  color: #ccc;
+  text-decoration: none;
+  margin-top: 5px;
+}
+.footer-links > a:hover {
+  text-decoration: underline;
+}
+
+.outlined {
+  font-weight: 700;
+}
+
+.outlined:hover {
+  /* background-color: #3f3f3f; */
+  background-color: gray;
+  /* color: #000; */
+}
+</style>

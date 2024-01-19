@@ -1,0 +1,94 @@
+<div>
+  <h2 class="d-flex justify-content-center mb-2">Search Results</h2>
+  <div class="d-flex justify-content-center">
+    <div class="d-none d-md-block px-3" style="width: 100%;">
+      <form
+        action="{{routes.search_url}}"
+        method="get"
+        class="d-flex my-4 justify-content-center"
+        style="width: 100%;">
+        <input
+          id="searchbar-desktop"
+          name="q"
+          type="search"
+          class=""
+          style="border-radius: 5px; width: 80%; max-width: 1145px; padding-right: 5px; padding-left: 40px; color:#000; max-width: 700px;"
+          placeholder="Enter search term">
+        <button
+          type="submit"
+          id="search-button-desktop"
+          style="overflow: hidden;"
+          class="btn btn-success ml-2 mr-1 animate-slide">Search</button>
+        <button
+          id="search-cancel-desktop"
+          style="overflow: hidden;"
+          class="btn btn-danger mx-2 animate-slide">Cancel</button>
+
+      </form>
+    </div>
+  </div>
+  <div class="site-contain px-4">
+    {% paginate search.results by 10 %}
+      {% for item in search.results %}
+        {% case item.object_type %}
+          {% when 'product' %}
+            <div class="product-card">
+              {% render 'product-card'
+                , product: item %}
+            </div>
+        {% else %}
+
+          {% endcase %}
+        {% endfor %}
+
+        {% render 'pagination'
+          , pagination: paginate %}
+      {% endpaginate %}
+    </div>
+  {% comment %} <div class="site-contain px-4">
+            {% paginate search.results by 10 %}
+              {% for item in search.results %}
+                {% case item.object_type %}
+                  {% when 'product' %}
+                    {% render 'product-card'
+                      , product: item %}
+                    {% else %}
+    
+                {% endcase %}
+              {% endfor %}
+    
+              {% render 'pagination'
+                , pagination: paginate %}
+            {% endpaginate %}
+      </div> {% endcomment %}
+  </div>
+
+
+  {% comment %} <style>
+        .site-contain {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+  
+        .product-card {
+          /* Add styles for each product card */
+          width: calc(33.33% - 20px);
+          /* Adjust width as needed */
+          margin-bottom: 20px;
+        }
+  
+        @media (max-width: 768px) {
+          .product-card {
+            width: calc(50% - 20px);
+            /* Adjust width for smaller screens */
+          }
+        }
+  
+        @media (max-width: 480px) {
+          .product-card {
+            width: 100% !important;
+            /* Full width on smaller screens */
+          }
+        }
+    </style> {% endcomment %}

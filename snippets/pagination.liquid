@@ -1,20 +1,20 @@
-{% if pagination.pages > 0 %}
-    <nav role="navigation" class="d-flex justify-content-center mt-5">
-        {% if pagination.previous %}
-            <a href="{{pagination.previous.url}}">{{pagination.previous.title}}</a>    
-        {% endif %}
+{% if pagination.pages > 1 %}
+  <nav role="navigation" class="d-flex justify-content-center mt-5">
+    {% if pagination.previous %}
+      <a href="{{pagination.previous.url}}">{{ pagination.previous.title }}</a>
+    {% endif %}
 
-        {% for part in pagination.parts %}
-            {% if part.is_link %}
-                <a href="{{part.url}}">{{part.title}}</a>     
-            {% else %}
-                <span>{{part.title}}</span>           
-            {% endif %}
-        {% endfor %}
-        
-        {% if condition %}
-            <a href="{{pagination.next.url}}">{{pagination.next.title}}</a>
-        {% endif %}
-                
-    </nav>
+    {% for part in pagination.parts %}
+      {% if part.is_link %}
+        <a href="{{part.url}}">{{ part.title }}</a>
+      {% else %}
+        <span>{{ part.title }}</span>
+      {% endif %}
+    {% endfor %}
+
+    {% if condition %}
+      <a href="{{pagination.next.url}}">{{ pagination.next.title }}</a>
+    {% endif %}
+
+  </nav>
 {% endif %}

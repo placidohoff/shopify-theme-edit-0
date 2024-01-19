@@ -1,35 +1,158 @@
-<div class="splash-image site-contain">
+
+<div class="splash-image site-contain" style="padding: 50px; padding-top: 0px;">
+
     <div class="row">
         <div class="col">
-            <h2 style="font-size:xxx-large; color: #CCC; padding-top: 75px; font-style:italic;">{{section.settings.splash_text}}</h2>
+          <div style="" id="sm-back-image">
+            {% comment %} <img class="img-fluid" src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/hoodie-0_large.png?v=1702867624" alt=""> {% endcomment %}
+            {% if section.settings.splash_image_0 != blank %}
+              <img class="img-fluid fade-img-sm" loading="lazy" style="" src="{{section.settings.splash_image_0 |  img_url: 'large'}}" alt="ALT">
+              {% else %}
+              
+                <img class="img-fluid fade-img-sm" loading="lazy" style="" src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/shirt-1_large.png?v=1702867624" alt="ALT">
+                
+            {% endif %} 
+            
+            {% if section.settings.splash_image_2 != blank %}
+              <img class="img-fluid fade-img-sm" loading="lazy" style="" src="{{section.settings.splash_image_2 |  img_url: 'large'}}" alt="ALT">
+              {% else %}
+              <img class="img-fluid fade-img-sm" loading="lazy" style="" src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/shirt-2_large.png?v=1702867624" alt="ALT">
+                
+            {% endif %} 
+
+            {% if section.settings.splash_image_3 != blank %}
+              <img class="img-fluid fade-img-sm" loading="lazy" style="" src="{{section.settings.splash_image_2 |  img_url: 'large'}}" alt="ALT">
+              {% else %}
+              <img class="img-fluid fade-img-sm" loading="lazy" style="" src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/hoodie-0_large.png?v=1702867624" alt="ALT">
+                
+            {% endif %} 
+               
+          </div>
+            <h2 style="font-size:xxx-large; color: #CCC; font-style:italic; position: relative; z-index: 2;">{{section.settings.splash_text}}</h2>
             <h3></h3>
 
-            <div class="d-flex justify-content-end" style="width: 70%; margin-top: 80px;">
+            <div id="main-splash-buttons-lg" class="" style="width: 70%; margin-top: 20px;">
                 <a href="{{routes.all_products_collection_url}}" class="btn btn-alpha"> Shop Now </a>
                 <a href="#" class="btn btn-bravo mx-3"> Learn More </a>
             </div>
-        </div>
-        <div class="col">
+
+            <div id="scroll-down-chevron-md" style="margin-top: 15px; justify-content: center; display: flex;">
+            <a href="#home-collections">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width: 7.5rem; height:5.5rem; margin-top: 20px; margin-right: 100px;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                  class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                </svg>
+            </a>
             
-            {% if section.settings.splash_image != blank %}
-                <img id="splashImage" class="img-fluid mt-3" loading="lazy" style="width: 55%" src="{{section.settings.splash_image |  img_url: 'large'}}" alt="ALT">
+            </div>
+
+            </div>
+        <div class="col">
+
+        <div class="slideshow-container" style="margin-top: -50px;">
+
+  
+        {% if section.settings.splash_image_0 != blank %}
+
+                <img class="img-fluid fade-img" loading="lazy" style="width: 55%; padding-top: 75px;" src="{{section.settings.splash_image_0 |  img_url: 'large'}}" alt="ALT">
+        {% else %}
+                <img class="img-fluid fade-img" loading="lazy" style="width: 55%; padding-top: 75px;" src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/shirt-1_large.png?v=1702867760" alt="ALT">
+                  
+        {% endif %} 
+            
+        {% if section.settings.splash_image_1 != blank %}
+
+           <img class="img-fluid fade-img" loading="lazy" style="width: 55%; padding-top: 75px;" src="{{section.settings.splash_image_1 |  img_url: 'large'}}" alt="ALT">
+           {% else %}
+            
+
+           {% else %}
+            <img class="img-fluid fade-img" loading="lazy" style="width: 55%; padding-top: 75px;" src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/shirt-2_large.png?v=1702867760" alt="ALT">
+                
+        {% endif %}
+            
+        {% if section.settings.splash_image_2 != blank %}
+
+                <img class="img-fluid fade-img" loading="lazy" style="width: 55%; padding-top: 75px;" src="{{section.settings.splash_image_2 |  img_url: 'large'}}" alt="ALT">
+
                 {% else %}
+                <img class="img-fluid fade-img" loading="lazy" style="width: 55%; padding-top: 75px;" src="https://placido-dev-online-store.myshopify.com/cdn/shop/files/hoodie-0_large.png?v=1702867760" alt="ALT">
+        {% endif %}
+       
+        {% if section.settings.splash_image_3 != blank %}
 
-                <img id="splashImage" class="img-fluid mt-3" loading="lazy" style="width: 55%" src="https://cdn.shopify.com/s/files/1/0590/6907/1420/files/square-logo-transparent.png?v=1702225342" alt="alt">
-            {% endif %}
-            {% comment %} <img class="img-fluid" src="{{section.settings.splash_image | img_url:'large'}}" alt="ALT"> {% endcomment %}
+                <img class="img-fluid fade-img" loading="lazy" style="width: 55%; padding-top: 75px;" src="{{section.settings.splash_image_3 |  img_url: 'large'}}" alt="ALT">
+        {% endif %}
+        
+    
 
-        </div>
+         
+
+
     </div>
+
 </div>
+
+{% comment %} SHOP NOW LEARN MORE {% endcomment %}
+<div class="row" style="margin-top: 4rem!important">
+      <div id="main-splash-buttons-sm" class="">
+          <a href="{{routes.all_products_collection_url}}" class="col-12 btn btn-alpha" style=""> Shop Now </a>
+          <a href="#" class="col-12 btn btn-bravo mt-3" style=""> Learn More </a>
+        </div>
+</div>
+
+{% comment %} CHEVRON {% endcomment %}
+  <div class="row">
+    <div id="scroll-down-chevron-sm" style="margin-top: 15px; justify-content: center; display: flex;">
+    <a href="#home-collections">
+      <svg xmlns="http://www.w3.org/2000/svg" style="width: 7.5rem; height:5.5rem; margin-top: 100px;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+      </svg>
+    
+    </div>
+    </a>
+  </div>
+
+
+{% comment %} {% section 'template-collections' %} {% endcomment %}
+ {% comment %} <h2 class="mb-5 mt-1">Shop by category
+        </h2> {% endcomment %}
+
+
+<div
+  id="home-collections"
+  class="fade-load"
+  style="padding: 0px;">
+  <div id="home-collections-title" class="d-flex justify-content-center">
+     <h2 class="my-5">Shop by category
+        </h2> 
+  </div>
+  </div>
+
+  {% render 'collections-row' %} 
 
 
 
 <style>
+  #home-collections-title{
+    margin-top: 200px; 
+  }
+
+@media only screen and (max-width: 450px ){
+  #home-collections-title{
+    margin-top: 50px !important;
+  }
+}
     .btn{
         border: 1px solid #CCC;
         font-weight: bold;
-        padding: 
+        position: relative;
+    }
+    .btn:hover{
+        background-color: #191919;
+        color: #ccc;
+        border: 1px solid #ccc;
     }
     .btn-alpha{
         color: #191919;
@@ -42,14 +165,198 @@
       opacity: 0;
       transition: opacity 1s ease-in-out; /* Adding a transition for a smooth effect */
     }
+    .fade-img{
+        transition: opacity 0.8s ease-in-out !important;
+        position: absolute;
+        opacity: 0;
+        width: 40% !important;
+        max-width: 300px !important;
+    }
+    .fade-img-sm{
+        transition: opacity 0.8s ease-in-out !important;
+        position: absolute;
+        opacity: 0;
+        margin-left: -50px;
+        width: 90%;
+        /* width: 40% !important;
+        max-width: 300px !important; */
+    }
+    .fade-out{
+        opacity: 0;
+    }
+    .fade-in{
+        opacity: 1;
+    }
+    #main-splash-buttons-lg{
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #main-splash-buttons-sm{
+          display: none;
+        }
+
+      #sm-back-image{
+        display: none;
+      }
+      #scroll-down-chevron-md{
+        display: block;
+        position: relative;
+        animation: updownAnimation 1s ease-in-out infinite alternate;
+      }
+
+      #scroll-down-chevron-sm{
+        display: none !important;
+        position: relative;
+        animation: updownAnimation 1s ease-in-out infinite alternate;
+      }
+
+      @keyframes updownAnimation {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-10px); /* Adjust the value to change the hover distance */
+        }
+      }
+
+    @media only screen and (min-width: 1108px) {
+      #scroll-down-chevron-md{
+          /* display: none !important; */
+        }
+
+        #scroll-down-chevron-sm{
+        display: none !important;
+      }
+    }
+
+    @media only screen and (max-width: 720px){
+        #main-nav-menu{
+            display: none !important;
+        }
+        #mobile-nav-menu{
+            display: flex;
+            align-items: center;
+        }
+        #mobile-nav-menu:hover{
+            cursor: pointer;
+        }
+        #square-logo{
+            /* margin-left: auto;
+            margin-right: auto; */
+            margin-left: 50%;
+        }
+
+        #main-splash-buttons-lg{
+          display: none !important;
+        }
+
+        #main-splash-buttons-sm{
+          display: inline-block;
+        }
+        .fade-img{
+          max-width: 235px !important;;
+        }
+
+        #main-splash-buttons-sm >a{
+          width: 100%;
+          height:60%;
+          display:flex;
+          justify-content: center;
+          align-items:center
+        }
+
+        #scroll-down-chevron-md{
+          display: none !important;
+        }
+        #scroll-down-chevron-sm{
+        display: none !important;
+      }
+    }
+
+    @media only screen and (max-width: 450px){
+      .slideshow-container{
+        display: none;
+      }
+
+      #sm-back-image{
+        display: block;
+      }
+
+      /* #sm-back-image > img{
+        opacity: 0.5;
+      } */
+      #scroll-down-chevron-md{
+        display: none !important;
+      }
+      #scroll-down-chevron-sm{
+        display: flex !important;
+      }
+    }
 </style>
 
 <script>
-    const img = document.getElementById('splashImage');
+    // const img = document.getElementById('splashImage');
     
-    img.onload = function() {
-      img.style.opacity = 1; // Change the opacity to 1 when the image is loaded
-    };
+    // img.onload = function() {
+    //   img.style.opacity = 1; // Change the opacity to 1 when the image is loaded
+    // };
+
+    let slideIndex = 0;
+    animateImages();
+    animateSMImages();
+
+    function animateImages() {
+        let i;
+        const slides = document.getElementsByClassName("fade-img");
+        
+        // Hide all images
+        for (i = 0; i < slides.length; i++) {
+        // slides[i].style.display = "none";
+        slides[i].style.opacity = "0";
+        }
+
+        // Increment the slide index
+        slideIndex++;
+
+        // Reset slide index if it reaches the end
+        if (slideIndex > slides.length) {
+        slideIndex = 1;
+        }
+
+        // Display the current image
+        // slides[slideIndex - 1].style.display = "block";
+        slides[slideIndex - 1].style.opacity = "1";
+
+        // Change image every 2 seconds (2000 milliseconds)
+        setTimeout(animateImages, 4000);
+    }
+    function animateSMImages() {
+      // alert('test')
+        let i;
+        const slides = document.getElementsByClassName("fade-img-sm");
+        
+        // Hide all images
+        for (i = 0; i < slides.length; i++) {
+        // slides[i].style.display = "none";
+        slides[i].style.opacity = "0";
+        }
+
+        // Increment the slide index
+        slideIndex++;
+
+        // Reset slide index if it reaches the end
+        if (slideIndex > slides.length) {
+        slideIndex = 1;
+        }
+
+        // Display the current image
+        // slides[slideIndex - 1].style.display = "block";
+        slides[slideIndex - 1].style.opacity = "0.5";
+
+        // Change image every 2 seconds (2000 milliseconds)
+        setTimeout(animateSMImages, 4000);
+    }
   </script>
 
 {% schema %}
@@ -59,17 +366,43 @@
         {
             "type": "text",
             "id": "splash_text",
-            "default": "Explore our collection!",
+            "default": "Explore our collections",
             "label": "Display Text"
+        },
+
+        {
+            "type": "image_picker",
+            "id": "splash_image_0",
+            "label": "Carousel Image",
+            "info": "Select an image"
+
         },
         {
             "type": "image_picker",
-            "id": "splash_image",
-            "label": "Homepage Image",
+            "id": "splash_image_1",
+            "label": "Carousel Image",
+            "info": "Select an image"
+
+        },
+        {
+            "type": "image_picker",
+            "id": "splash_image_2",
+            "label": "Carousel Image",
+            "info": "Select an image"
+
+        },
+        {
+            "type": "image_picker",
+            "id": "splash_image_3",
+            "label": "Carousel Image",
             "info": "Select an image"
 
         }
+
         
         ]
 }
 {% endschema %}
+
+
+
