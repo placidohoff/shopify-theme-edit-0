@@ -1,5 +1,15 @@
 {
-  "current": "Default",
+  "current": {
+    "checkout_logo_image": "shopify:\/\/shop_images\/square-logo-transparent.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "small",
+    "checkout_body_background_color": "#191919",
+    "checkout_input_background_color_mode": "transparent",
+    "checkout_sidebar_background_color": "#f7e8e8",
+    "content_for_index": [
+
+    ]
+  },
   "presets": {
     "Default": {
     }
